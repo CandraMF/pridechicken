@@ -1,8 +1,63 @@
 import MainLayout from '@/Layouts/MainLayout';
 import { Head } from '@inertiajs/react';
 import { Carousel, Button } from 'flowbite-react';
+import { useState } from 'react';
 
-export default function Home() {
+const Home = () => {
+
+    const faqs = [
+        {
+            question: "Bagaimana Sistem Kemitraan Pride Chicken?",
+            answer: "Kemitraan pride chicken adalah sistem kemitraan jual beli putus dimana semua keuntungan untuk mitra pride chicken tanpa bagi hasil dan biaya royalti.",
+            action: false,
+            actionTitle: "",
+        },
+        {
+            question: "Bagaimana Cara Bergabungnya?",
+            answer: "Menghubungi sales pride chicken, melengkapi data diri dan rencana lokasi usaha, membayar biaya registrasi (mengurangi biaya paket kemitraan yang dipilih), share titik lokasi yang ingin diajukan, kirim beserta dokumentasifoto dan video sekitar lokasi yang diajukan, proses cek dan survey, menunggu hasil survey kemudian jika disetujui masuk ke tahap berikutnya. (disarankan tidak membayarkan sewa atau dp kios sebelum lokasi yang diajukan di setujui oleh pihak pride chicken).",
+            action: "langkah",
+            actionTitle: "Lihat 7 Langkah Gabung Menjadi Mitra",
+        },
+        {
+            question: "Bahan Bakunya Apakah Disediakan?",
+            answer: "Untuk bahan baku wajib, mitra wajib membeli distokis pride chicken terdekat di masingmasing wilayah, namun jika belum ada, anda dapat melakukan pemesanan ke stokis pride chicken pusat, mulai dari ayam, tepung, saus pilihan, packaging dan lain-lain.",
+            action: false,
+            actionTitle: "",
+        },
+        {
+            question: "Boleh Membeli Bahan Baku dari Luar?",
+            answer: "Mitra tidak diperbolehkan membeli bahan baku dari luar stokis pride chicken. terkecuali bahan baku tidak wajib. hal ini bertujuan agar produk pride chicken yang dijual sesuai dengan sop manajemen pride chicken.",
+            action: false,
+            actionTitle: "",
+        },
+        {
+            question: "Apakah Ada Pelatihan Masaknya?",
+            answer: "Ada 2 tempat pelatihan, pelatihan pertama bisa di training center kami secara gratis. dan pelatihan kedua, trainer kami ke lokasi outlet mitra, untuk pelatihan gratis dilakukan selama 4 hari, diatas itu ada biaya untuk trainer yang datang ke lokasi outlet mitra.",
+            action: false,
+            actionTitle: "",
+        },
+        {
+            question: "Untuk Harga Jual Bagaimana?",
+            answer: "Untuk harga jual mitra wajib mengikut kebijakan dari manajemen pride chicken.",
+            action: false,
+            actionTitle: "",
+        },
+        {
+            question: "Jika Belum ada Lokasi Apakah Dibantu Carikan Lokasinya?",
+            answer: "Untuk saat ini kami memiliki banyak stok tempat, selain itu juga kami bisa bantu arahkan cara mencari tempat yang baik dan benar sesuai kriteria. tetapi kami tidak dapat menjamin 100% untuk pangsa pasar, tingkat kepadatan penduduk dan daya beli nasyarakat nya, karena harus ada analisa lebih lanjut.",
+            action: false,
+            actionTitle: "",
+        },
+        {
+            question: "Apa Saja Bahan Baku Yang Wajib Dibeli?",
+            answer: "Bahan baku wajib tersebut adalah ayam, tepung, kemasan branding, dan saus pilihan.",
+            action: false,
+            actionTitle: "",
+        },
+    ]
+
+    const [selectTab, setSelectTab] = useState(0)
+
     return (
         <MainLayout>
             <Head title="Home" />
@@ -230,9 +285,9 @@ export default function Home() {
                         <div></div>
                         <div className='col-span-3'>
                             <div className="grid grid-cols-3 gap-5 justify-center items-center">
-                                <img src="/assets/icons/gofood.svg" alt="" srcset="" />
-                                <img src="/assets/icons/shopeefood.svg" alt="" srcset="" />
-                                <img src="/assets/icons/grabfood.svg" alt="" srcset="" />
+                                <img src="/assets/icons/gofood.svg" alt="" srcSet="" />
+                                <img src="/assets/icons/shopeefood.svg" alt="" srcSet="" />
+                                <img src="/assets/icons/grabfood.svg" alt="" srcSet="" />
                             </div>
                         </div>
                         <div></div>
@@ -240,6 +295,67 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+
+            <div className="min-h-screen max-w-6xl mx-auto px-6 lg:px-8">
+                <div className="grid grid-cols-2 gap-10 justify-center h-screen">
+                    <div className="flex justify-center items-center h-full">
+                        <img className='h-2/3' src="assets/images/booth/booth roda.png" alt="" />
+                    </div>
+                    <div className='flex justify-start items-center h-full text-white'>
+                        <div>
+                            <h2 className='text-4xl font-semibold'>Keuntungan Bermitra dengan Pride Chicken</h2>
+                            <ul className="list-disc mt-5 pl-5">
+                                <li>Free Royalti</li>
+                                <li>Free Media Promosi</li>
+                                <li>Free Konsultasi</li>
+                                <li>100% Keuntungan Untuk Mitra</li>
+                                <li>Tidak ada Bagi hasil</li>
+                                <li>Disupport oleh management</li>
+                                <li>Dibantu survey lokasi</li>
+                                <li>Dibantu pelatihan sDM</li>
+                            </ul>
+                            <Button className='mt-5' color="failure" outline>
+                                Lihat Lebih Lengkap
+                            </Button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div className="min-h-screen max-w-6xl mx-auto px-6 lg:px-8 pb-10">
+                <div className="grid grid-cols-2 gap-10 justify-center h-screen">
+                    <div className='flex justify-start items-center h-full text-white'>
+                        <div>
+                            <h2 className='text-4xl font-semibold'># FAQ</h2>
+
+                            <div className='flex flex-col gap-3 items-start mt-10'>
+                                {faqs.map((faq, index) => {
+                                    console.log(faq.question)
+                                    return (
+                                        <button onClick={() => setSelectTab(index)} className={selectTab == index && `px-4 py-3 text-black bg-[#FFFF00]`} key={index}>{faq.question}</button>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex justify-center items-center">
+                        <div className="bg-white w-full min-h-80 p-8 rounded-xl">
+                            <h2 className='text-2xl font-semibold text-[#FAA41A]'>Jawab</h2>
+                            <p className='my-3'>{faqs[selectTab].answer}</p>
+                            
+                            {faqs[selectTab].action && <Button className='mt-5' color="failure" outline>
+                                {faqs[selectTab].actionTitle}
+                            </Button>}
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </MainLayout>
     );
 }
+
+export default Home;
+
