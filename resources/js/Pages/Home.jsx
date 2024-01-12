@@ -1,4 +1,3 @@
-import Checkbox from '@/Components/Checkbox';
 import TextInput from '@/Components/TextInput';
 import MainLayout from '@/Layouts/MainLayout';
 import { Head } from '@inertiajs/react';
@@ -540,6 +539,7 @@ const Home = () => {
                     </form>
                 </Card>
             </div>
+            
             <img className='w-full' src="assets/images/bg-2.png" alt="" />
             
         </MainLayout>

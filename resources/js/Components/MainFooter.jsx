@@ -41,6 +41,9 @@ export default function MainFooter() {
                     </div>
                 </div>
             </div>
+            <div className="py-8 bg-black text-white flex justify-center text-center">
+                <p>Copyright 2024 PT. CITRARASA UTAMA ABADI</p>
+            </div>
         </footer>
     )
 }

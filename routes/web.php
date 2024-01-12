@@ -29,6 +29,18 @@ Route::get('/profil', function () {
     return Inertia::render('Profile');
 });
 
+Route::get('/kemitraan', function () {
+    return Inertia::render('Kemitraan');
+});
+
+Route::get('/kontak', function () {
+    return Inertia::render('Kontak');
+});
+
+Route::get('/menu', function () {
+    return Inertia::render('Menu');
+});
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
