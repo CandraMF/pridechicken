@@ -27,8 +27,8 @@ export default function MainNavbar() {
                             </button>
                         </div>
                         <ul className={`hidden lg:flex lg:items-center lg:w-auto lg:space-x-6 ${isMobileMenuOpen ? '' : 'hidden'}`}>
-                            <li><Link className="text-sm text-white hover:text-white" href="#">Home</Link></li>
-                            <li><Link className="text-sm text-white hover:text-white" href="#">Profile</Link></li>
+                            <li><Link className="text-sm text-white hover:text-white" href="/">Home</Link></li>
+                            <li><Link className="text-sm text-white hover:text-white" href="/profil">Profile</Link></li>
                             <li><Link className="text-sm text-white hover:text-white" href="#">Menu</Link></li>
                             <li><Link className="text-sm text-white hover:text-white" href="#">Kemitraan</Link></li>
                             <li><Link className="text-sm text-white hover:text-white" href="#">Kontak</Link></li>

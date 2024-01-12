@@ -1,4 +1,5 @@
 
+import MainFooter from "@/Components/MainFooter";
 import MainNavbar from "@/Components/MainNavbar";
 
 export default function Main({ children }) {
@@ -12,6 +13,8 @@ export default function Main({ children }) {
             <MainNavbar></MainNavbar>
 
             {children}
+
+            <MainFooter></MainFooter>
 
         </div>
     );

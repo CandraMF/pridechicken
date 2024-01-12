@@ -3,9 +3,7 @@ import TextInput from '@/Components/TextInput';
 import MainLayout from '@/Layouts/MainLayout';
 import { Head } from '@inertiajs/react';
 import { Carousel, Button, Card, Avatar, Label, Radio, Textarea, FileInput } from 'flowbite-react';
-import { useState } from 'react';
-
-import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
+import { useEffect, useState } from 'react';
 
 
 const Home = () => {
@@ -115,6 +113,19 @@ const Home = () => {
 
     const [selectTab, setSelectTab] = useState(0)
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            var i = selectTab + 1
+            if(i > faqs.length - 1) {
+                setSelectTab(0)
+            } else {
+                setSelectTab(selectTab + 1)
+            }
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [selectTab]);
+
+
     return (
         <MainLayout>
             <Head title="Home" />
@@ -139,8 +150,11 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="min-h-screen relative" style={{ backgroundImage: "url(/assets/images/bg.png)", backgroundSize: 'cover' }}>
-                <div className='z-10 max-w-6xl mx-auto px-6 lg:px-8 pt-44 pb-44'>
+            <div className="min-h-screen relative bg-[#FFFF00]">
+
+                <img className='w-full bg-[#A00000]' src="assets/images/bg.png" alt="" />
+
+                <div className='z-10 max-w-6xl mx-auto px-6 lg:px-8'>
                     <p className='mt-6 text-4xl text-center mb-12' style={{ fontFamily: 'gagalin' }}>Varian Menu</p>
                     <div className="grid flex-row-reverse grid-flow-dense lg:grid-cols-3 grid-cols-1 gap-5">
                         <div className="flex flex-col items-center">
@@ -351,8 +365,8 @@ const Home = () => {
 
                     </div>
                 </div>
+                <img className='w-full' src="assets/images/bg-3.png" alt="" />
             </div>
-
             <div className="min-h-screen max-w-6xl mx-auto px-6 lg:px-8">
                 <div className="grid lg:grid-cols-2 grid-cols-1 gap-10 justify-center md:py-0 py-20 min-h-screen">
                     <div className="flex justify-center items-center h-full">
@@ -360,7 +374,7 @@ const Home = () => {
                     </div>
                     <div className='flex justify-start items-center h-full text-white'>
                         <div className=''>
-                            <h2 className='text-4xl font-semibold'>Keuntungan Bermitra dengan Pride Chicken</h2>
+                            <h2 className='text-4xl font-extrabold'>Keuntungan Bermitra dengan Pride Chicken</h2>
                             <ul className="list-disc mt-5 pl-5">
                                 <li>Free Royalti</li>
                                 <li>Free Media Promosi</li>
@@ -384,7 +398,7 @@ const Home = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 justify-center min-h-screen">
                     <div className='flex justify-start items-center h-full text-white'>
                         <div>
-                            <h2 className='text-4xl font-semibold md:text-start text-center'># FAQ</h2>
+                            <h2 className='text-4xl font-extrabold md:text-start text-center'># FAQ</h2>
 
                             <div className='flex flex-col gap-3 items-center md:items-start mt-10'>
                                 {faqs.map((faq, index) => {
@@ -412,7 +426,7 @@ const Home = () => {
             <div className="min-h-screen max-w-6xl mx-auto px-6 lg:px-8 pb-10">
 
                 <div className='flex flex-col justify-center items-center h-full text-white min-h-screen'>
-                    <h2 className='text-4xl font-semibold md:text-start text-center mb-10'>Kata Mitra Pride Chicken</h2>
+                    <h2 className='text-4xl font-extrabold md:text-start text-center mb-10'>Kata Mitra Pride Chicken</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-5 justify-center">
                         {comments.map((value, index) => {
                             return (
@@ -437,7 +451,7 @@ const Home = () => {
             <div className="min-h-screen max-w-6xl mx-auto px-6 lg:px-8 pb-10">
 
                 <div className='flex flex-col justify-center items-center h-full text-white min-h-screen'>
-                    <h2 className='text-4xl font-semibold md:text-start text-center mb-10'># Langkah Gabung Menjadi Mitra</h2>
+                    <h2 className='text-4xl font-extrabold md:text-start text-center mb-10'># {steps.length} Langkah Gabung Menjadi Mitra</h2>
                     <div className="grid w-full grid-rows-1 md:grid-rows-4 md:grid-flow-col grid-flow-row gap-x-10 gap-y-5">
 
                         {steps.map((value, index) => {
@@ -526,47 +540,8 @@ const Home = () => {
                     </form>
                 </Card>
             </div>
-
-            <div className=" relative" style={{ backgroundImage: "url(/assets/images/bg-2.png)", backgroundSize: 'cover' }}>
-                <div className='z-10 max-w-6xl mx-auto px-6 lg:px-8 pt-96 md:pt-56 pb-20'>
-                    <div className="grid flex-row-reverse grid-flow-dense lg:grid-cols-3 grid-cols-1 gap-10">
-                        <div className="flex flex-col gap-5">
-                            <img className='w-36' src="assets/images/logo.png" alt="" />
-                            <p className='text-white mt-5'>Pride Chicken adalah usaha mikro kecil menengah dengan sistem kemitraan yang dibangun sejak tahun 2020, Kami membangun usaha ini dengan sistem kemitraan, Kami menghadirkan berbagai menu yang inovatif serta paket kemitraan yang ekonomis.</p>
-                            <div className="flex gap-4 items-center">
-                                <img src="assets/icons/ig.png" alt="" />
-                                <img src="assets/icons/wa.png" alt="" />
-                                <img src="assets/icons/yt.png" alt="" />
-                                <img src="assets/icons/tk.png" alt="" />
-                            </div>
-                        </div>
-                        <div className="flex flex-col gap-5">
-                            <p className='font-bold text-xl text-white mt-5'>Hubungi Kami</p>
-                            <div className="flex gap-3 items-center text-white">
-                                <MdEmail fontSize={28} />
-                                <p>kemitraan@pridechicken.com</p>
-                            </div>
-                            <div className="flex gap-3 items-center text-white">
-                                <MdPhone fontSize={28} />
-                                <p>0881 - 0818 - 49988</p>
-                            </div>
-                            <div className="flex gap-3 items-center text-white">
-                                <MdLocationOn fontSize={28} />
-                                <p>Jl. Candra Kirana no. 16, Mekarwangi, Cibaduyut</p>
-                            </div>
-
-                        </div>
-                        <div className="flex flex-col gap-5 text-white">
-                            <p className='font-bold text-xl text-white mt-5'>Info</p>
-                            <p>Kontak</p>
-                            <p>FAQ</p>
-                            <p>Profil Pride Chicken</p>
-                            <p>Download Proposal Kemitraan</p>
-                            <p>Menu</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <img className='w-full' src="assets/images/bg-2.png" alt="" />
+            
         </MainLayout>
     );
 }
