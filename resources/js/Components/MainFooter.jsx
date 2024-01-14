@@ -9,10 +9,10 @@ export default function MainFooter() {
                         <img className='w-36' src="assets/images/logo.png" alt="" />
                         <p className='text-white mt-5'>Pride Chicken adalah usaha mikro kecil menengah dengan sistem kemitraan yang dibangun sejak tahun 2020, Kami membangun usaha ini dengan sistem kemitraan, Kami menghadirkan berbagai menu yang inovatif serta paket kemitraan yang ekonomis.</p>
                         <div className="flex gap-4 items-center">
-                            <img src="assets/icons/ig.png" alt="" />
-                            <img src="assets/icons/wa.png" alt="" />
-                            <img src="assets/icons/yt.png" alt="" />
-                            <img src="assets/icons/tk.png" alt="" />
+                            <a href="https://www.instagram.com/pridechicken_id/"><img src="assets/icons/ig.png" alt="" /></a>
+                            <a href="https://wa.me/62881081849988"><img src="assets/icons/wa.png" alt="" /></a>
+                            <a href="https://www.tiktok.com/@pridechicken.id"><img src="assets/icons/tk.png" alt="" /></a>
+                            <a href="https://www.youtube.com/results?search_query=pride+chicken"><img src="assets/icons/yt.png" alt="" /></a>
                         </div>
                     </div>
                     <div className="flex flex-col gap-5">
@@ -42,7 +42,7 @@ export default function MainFooter() {
                 </div>
             </div>
             <div className="py-8 bg-black text-white flex justify-center text-center">
-                <p>Copyright 2024 PT. CITRARASA UTAMA ABADI</p>
+                <p>Copyright © 2024 PT. CITRARASA UTAMA ABADI</p>
             </div>
         </footer>
     )

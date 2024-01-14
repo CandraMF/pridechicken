@@ -15,9 +15,6 @@ const Home = () => {
                 <div className="flex items-center text-center lg:items-center justify-center lg:justify-center flex-col ">
                     <img className='w-36' src="assets/images/logo.png" alt="" />
                     <p className='text-white mt-5'>Pride Chicken adalah usaha mikro kecil menengah dengan sistem kemitraan yang dibangun sejak tahun 2020, Kami membangun usaha ini dengan sistem kemitraan, Kami menghadirkan berbagai menu yang inovatif serta paket kemitraan yang ekonomis.</p>
-                    <Button className='mt-5' color="failure" outline>
-                        Lihat Lebih Lengkap
-                    </Button>
                 </div>
             </div>
 
