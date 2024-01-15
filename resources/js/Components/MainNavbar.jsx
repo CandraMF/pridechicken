@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from '@inertiajs/react';
+import { Button } from 'flowbite-react';
 
 export default function MainNavbar() {
 
@@ -27,13 +28,14 @@ export default function MainNavbar() {
                             </button>
                         </div>
                         <ul className={`hidden lg:flex lg:items-center lg:w-auto lg:space-x-6 ${isMobileMenuOpen ? '' : 'hidden'}`}>
-                            <li><Link className="text-sm text-white hover:text-white" href="/">Home</Link></li>
-                            <li><Link className="text-sm text-white hover:text-white" href="/profil">Profile</Link></li>
-                            <li><Link className="text-sm text-white hover:text-white" href="/menu">Menu</Link></li>
-                            <li><Link className="text-sm text-white hover:text-white" href="/kemitraan">Kemitraan</Link></li>
-                            <li><Link className="text-sm text-white hover:text-white" href="/kontak">Kontak</Link></li>
-                            <li><Link className="text-sm text-white hover:text-white" href="#">Loker</Link></li>
-                            <li><Link className="text-sm text-white hover:text-white" href="#">Gabung Kemitraan</Link></li>
+                            <li>{route().current('home')}</li>
+                            <li><Link className={`text-sm ${route().current('home') ? 'font-extrabold' : ''} text-white hover:text-white`} href="/">Home</Link></li>
+                            <li><Link className={`text-sm ${route().current('profil') ? 'font-extrabold' : ''} text-white hover:text-white`} href="/profil">Profil</Link></li>
+                            <li><Link className={`text-sm ${route().current('menu') ? 'font-extrabold' : ''} text-white hover:text-white`} href="/menu">Menu</Link></li>
+                            <li><Link className={`text-sm ${route().current('kemitraan') ? 'font-extrabold' : ''} text-white hover:text-white`} href="/kemitraan">Kemitraan</Link></li>
+                            <li><Link className={`text-sm ${route().current('kontak') ? 'font-extrabold' : ''} text-white hover:text-white`} href="/kontak">Kontak</Link></li>
+                            <li><Link className={`text-sm ${route().current('loker') ? 'font-extrabold' : ''} text-white hover:text-white`} href="/loker">Loker</Link></li>
+                            <li><Link className="text-sm text-white hover:text-white" href="/registrasi-mitra"><Button color="failure">Gabung Kemitraan</Button></Link></li>
                         </ul>
                     </div>
                 </div>
@@ -72,17 +74,17 @@ export default function MainNavbar() {
                                 <Link className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-[#A00000] rounded" href="/loker">Loker</Link>
                             </li>
                             <li className="mb-1">
-                                <Link className="block p-4 text-sm font-semibold text-white bg-[#A00000] rounded" href="/">Gabung Kemitraan</Link>
+                                <Link className="block p-4 text-sm font-semibold text-white bg-[#A00000] rounded" href="https://wa.me/62881081849988">Gabung Kemitraan</Link>
                             </li>
                         </ul>
                     </div>
                     <div className="mt-auto">
                         <div className="flex flex-col gap-4 items-center justify-center ">
                             <div className="flex gap-4 items-center bg-white">
-                                <img className="h-8" src="assets/icons/ig.png" alt="" />
-                                <img className="h-8" src="assets/icons/wa.png" alt="" />
-                                <img className="h-6" src="assets/icons/yt.png" alt="" />
-                                <img className="h-8" src="assets/icons/tk.png" alt="" />
+                                <a href="https://www.instagram.com/pridechicken_id/"><img src="assets/icons/ig.png" alt="" /></a>
+                                <a href="https://wa.me/62881081849988"><img src="assets/icons/wa.png" alt="" /></a>
+                                <a href="https://www.tiktok.com/@pridechicken.id"><img src="assets/icons/tk.png" alt="" /></a>
+                                <a href="https://www.youtube.com/results?search_query=pride+chicken"><img src="assets/icons/yt.png" alt="" /></a>
                             </div>
                         </div>
                     </div>

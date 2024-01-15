@@ -1,4 +1,5 @@
 import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
+import { Link } from '@inertiajs/react';
 
 export default function MainFooter() {
     return (
@@ -33,11 +34,11 @@ export default function MainFooter() {
                     </div>
                     <div className="flex flex-col gap-5 text-white">
                         <p className='font-bold text-xl text-white mt-5'>Info</p>
-                        <p>Kontak</p>
-                        <p>FAQ</p>
-                        <p>Profil Pride Chicken</p>
-                        <p>Download Proposal Kemitraan</p>
-                        <p>Menu</p>
+                        <Link href="/kontak">Kontak</Link>
+                        <Link href="/#faq">FAQ</Link>
+                        <Link href="/profil">Profil Pride Chicken</Link>
+                        <Link href="/kemitraan">Download Proposal Kemitraan</Link>
+                        <Link href="/menu">Menu</Link>
                     </div>
                 </div>
             </div>

@@ -1,45 +1,39 @@
-import TextInput from '@/Components/TextInput';
 import MainLayout from '@/Layouts/MainLayout';
 import { comments, customBannerCarouselTheme, customProductCarouselTheme, faqs, formatRupiah, listProduct, steps } from '@/Utils/helper';
 import { Head } from '@inertiajs/react';
-import { Carousel, Button, Card, Avatar, Label, Radio, Textarea, FileInput } from 'flowbite-react';
+import { Carousel, Button, Card, Avatar } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { RegisterFormMitra } from '@/Components/RegisterFormMitra';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 const Home = () => {
 
     const [selectTab, setSelectTab] = useState(0)
 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         var i = selectTab + 1
-    //         if (i > faqs.length - 1) {
-    //             setSelectTab(0)
-    //         } else {
-    //             setSelectTab(selectTab + 1)
-    //         }
-    //     }, 5000);
-    //     return () => clearInterval(interval);
-    // }, [selectTab]);
-
     return (
         <MainLayout>
             <Head title="Home" />
 
-            <div className="min-h-screen max-w-6xl mx-auto px-6 lg:px-8 pt-28">
-                <div className="grid flex-row-reverse grid-flow-dense grid-cols-2 gap-5">
-                    <div className="col-span-2 left lg:col-span-1 flex justify-center items-center lg:py-10">
-                        <Carousel theme={customBannerCarouselTheme} slide className='h-[250px] w-[250px] lg:h-[400px] lg:w-[400px] rounded-lg shadow-2xl'>
+            <div className="min-h-screen max-w-6xl mx-auto px-6 lg:px-8 md:pt-0 pt-36">
+                <div className="grid flex-row-reverse grid-flow-dense grid-cols-2 gap-5 min-h-screen">
+                    <div className="col-span-2 lg:col-span-1 flex justify-center items-center lg:py-10">
+                        <Carousel theme={customBannerCarouselTheme} slide className='h-[350px] w-[350px] lg:h-[400px] lg:w-[400px] rounded-lg shadow-2xl'>
                             <img src="assets/images/banner/banner_1.jpg" />
                             <img src="assets/images/banner/banner_2.jpg" />
                             <img src="assets/images/banner/banner_3.jpg" />
                             <img src="assets/images/banner/banner_4.jpg" />
                         </Carousel>
                     </div>
-                    <div className="col-span-2 lg:col-span-1 lg:py-10 lg:px-10 flex items-center lg:items-start justify-center lg:justify-start flex-col pb-10">
+                    <div className="col-span-2 lg:col-span-1 lg:py-10 lg:px-10 flex items-center lg:items-start justify-start lg:justify-center flex-col pb-10">
                         <img className='w-36' src="assets/images/logo.png" alt="" />
-                        <p className='text-white mt-5'>Pride Chicken adalah usaha mikro kecil menengah dengan sistem kemitraan yang dibangun sejak tahun 2020, Kami membangun usaha ini dengan sistem kemitraan, Kami menghadirkan berbagai menu yang inovatif serta paket kemitraan yang ekonomis.</p>
+                        <p className='text-white text-center md:text-start mt-5'>Pride Chicken adalah usaha mikro kecil menengah dengan sistem kemitraan yang dibangun sejak tahun 2020, Kami membangun usaha ini dengan sistem kemitraan, Kami menghadirkan berbagai menu yang inovatif serta paket kemitraan yang ekonomis.</p>
                         <Link href='profil'>
                             <Button className='mt-5' color="failure" outline>
                                 Lihat Lebih Lengkap
@@ -305,13 +299,15 @@ const Home = () => {
                             <div className='flex flex-col gap-3 items-center md:items-start mt-10'>
                                 {faqs.map((faq, index) => {
                                     return (
+
                                         <button onClick={() => setSelectTab(index)} className={selectTab == index && `px-4 py-3 text-black bg-[#FFFF00]`} key={index}>{faq.question}</button>
+
                                     )
                                 })}
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-center items-center" id='jawab'>
                         <div className="bg-white w-full min-h-80 p-8 rounded-xl">
                             <h2 className='text-2xl font-semibold text-[#FAA41A]'>Jawab</h2>
                             <p className='my-3'>{faqs[selectTab].answer}</p>
@@ -324,30 +320,66 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="min-h-screen max-w-6xl mx-auto px-6 lg:px-8 pb-10">
+            {/* <div className=" max-w-6xl mx-auto px-6 lg:px-8 pb-10">
 
-                <div className='flex flex-col justify-center items-center h-full text-white min-h-screen'>
-                    <h2 className='text-4xl font-extrabold md:text-start text-center mb-10'>Kata Mitra Pride Chicken</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 justify-center">
+
+                <h2 className='text-4xl font-extrabold md:text-center text-center mb-10 text-white'>Kata Mitra Pride Chicken</h2>
+                <div className="relative">
+                    <Swiper
+                        modules={[Navigation, Pagination, Autoplay]}
+                        navigation={true}
+                        pagination={true}
+                        grabCursor={true}
+                        spaceBetween={10}
+                        className="mySwiper"
+                        autoplay={{
+                            delay: 2500,
+                            disableOnInteraction: false,
+                        }}
+                        loop={true}
+                        slidesPerView={3}
+                        breakpoints={{
+                            0: {
+                                slidesPerView: 1,
+                            },
+                            400: {
+                                slidesPerView: 1,
+                            },
+                            639: {
+                                slidesPerView: 3,
+                            },
+                            865: {
+                                slidesPerView: 3
+                            },
+                            1000: {
+                                slidesPerView: 3
+                            },
+                        }}
+                    >
+
                         {comments.map((value, index) => {
                             return (
-                                <Card className="max-w-sm">
-                                    <Avatar img={value.photo} rounded size="xl"></Avatar>
-                                    <h5 className="text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white">
-                                        {value.name}
-                                    </h5>
-                                    <p className="font-normal text-center text-gray-700 dark:text-gray-400">
-                                        Pemilik Outlet {value.address}
-                                    </p>
-                                    <p className="font-normal text-center text-gray-700 dark:text-gray-400">
-                                        "{value.comment}"
-                                    </p>
-                                </Card>
+                                <SwiperSlide key={index}>
+                                    <div>
+                                        <Card>
+                                            <Avatar img={value.photo} rounded size="xl"></Avatar>
+                                            <h5 className="text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white">
+                                                {value.name}
+                                            </h5>
+                                            <p className="font-normal text-center text-gray-700 dark:text-gray-400">
+                                                Pemilik Outlet {value.address}
+                                            </p>
+                                            <p className="font-normal text-center text-gray-700 dark:text-gray-400">
+                                                "{value.comment}"
+                                            </p>
+                                        </Card>
+                                    </div>
+                                </SwiperSlide>
                             )
                         })}
-                    </div>
+                    </Swiper>
                 </div>
-            </div>
+            </div> */}
 
             <div className="min-h-screen max-w-6xl mx-auto px-6 lg:px-8 pb-10" id='langkah'>
 
@@ -358,7 +390,7 @@ const Home = () => {
                         {steps.map((value, index) => {
                             return (
                                 <div className="flex justify-start items gap-8">
-                                    <div className="h-16 min-w-16 flex justify-center items-center text-black font-extrabold rounded-full bg-[#FFFF00]">{index+1}</div>
+                                    <div className="h-16 min-w-16 flex justify-center items-center text-black font-extrabold rounded-full bg-[#FFFF00]">{index + 1}</div>
                                     <div className="flex flex-col gap-1">
                                         <p className='font-extrabold'>{value.title}</p>
                                         <p >{value.desc}</p>
@@ -371,75 +403,8 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="min-h-screen max-w-6xl mx-auto px-6 lg:px-8 pb-10">
-
-                <Card>
-                    <h5 className="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                        Form Registrasi Online
-                    </h5>
-
-                    <form >
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                            <div>
-                                <div className="mb-2 block">
-                                    <Label htmlFor="nama" value="Nama Lengkap" />
-                                </div>
-                                <TextInput className="w-full" id="nama" type="text" placeholder="Isi dengan nama lengkap anda" required />
-                            </div>
-
-                            <div>
-                                <div className="mb-2 block">
-                                    <Label htmlFor="email" value="Email" />
-                                </div>
-                                <TextInput className="w-full" id="email" type="email" placeholder="contoh: abc@gmail.com" required />
-                            </div>
-
-                            <div>
-                                <div className="mb-2 block">
-                                    <Label htmlFor="whatsapp" value="Nomor Whatsapp" />
-                                </div>
-                                <TextInput className="w-full" id="whatsapp" type="text" placeholder="contoh: 0821312387xx" required />
-                            </div>
-
-                            <div>
-                                <div className="mb-2 block">
-                                    <Label htmlFor="ttl" value="Tanggal Lahir" />
-                                </div>
-                                <TextInput className="w-full" id="ttl" type="date" placeholder="" required />
-                            </div>
-
-                            <fieldset className="flex max-w-md flex-row gap-4 md:col-span-2">
-                                <legend className="mb-4">Jenis Kelamin</legend>
-                                <div className="flex items-center gap-2">
-                                    <Radio id="united-state" name="countries" value="L" defaultChecked />
-                                    <Label htmlFor="united-state">Laki-Laki</Label>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Radio id="germany" name="countries" value="P" />
-                                    <Label htmlFor="germany">Perempuan</Label>
-                                </div>
-                            </fieldset>
-
-                            <div>
-                                <div className="mb-2 block">
-                                    <Label htmlFor="comment" value="Alamat" />
-                                </div>
-                                <Textarea id="comment" placeholder="Isi Dengan Alamat Lengkap" required rows={4} />
-                            </div>
-
-                            <div id="fileUpload" className="max-w-md">
-                                <div className="mb-2 block">
-                                    <Label htmlFor="file" value="Pas Foto 3x4" />
-                                </div>
-                                <FileInput id="file" helperText="File harus berformat png, jpg, jpeg" />
-                            </div>
-
-                            <div className='md:col-span-2 flex justify-end'>
-                                <Button type="submit">Kirim</Button>
-                            </div>
-                        </div>
-                    </form>
-                </Card>
+            <div className="min-h-screen max-w-6xl mx-auto px-6 lg:px-8 pb-10" id='form'>
+                <RegisterFormMitra></RegisterFormMitra>
             </div>
 
             <img className='w-full' src="assets/images/bg-2.png" alt="" />

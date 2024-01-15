@@ -9,7 +9,7 @@ const Home = () => {
 
     return (
         <MainLayout>
-            <Head title="Home" />
+            <Head title="Profil" />
 
             <div className="max-w-3xl mx-auto px-6 lg:px-8 pt-36 pb-48">
                 <div className="flex items-center text-center lg:items-center justify-center lg:justify-center flex-col ">

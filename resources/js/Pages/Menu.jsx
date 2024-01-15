@@ -1,19 +1,31 @@
 import TextInput from '@/Components/TextInput';
 import MainLayout from '@/Layouts/MainLayout';
 import { Head } from '@inertiajs/react';
-import { Carousel, Button, Card, Avatar, Label, Radio, Textarea, FileInput } from 'flowbite-react';
+import { Carousel } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+import { customBannerCarouselTheme, formatRupiah, listProduct } from '@/Utils/helper';
 
 export default function Menu() {
+
     return (
         <MainLayout>
             <Head title="Menu" />
 
-            <div className="min-h-screen max-w-6xl mx-auto px-6 lg:px-8">
+            <div className="min-h-screen max-w-6xl mx-auto px-6 lg:px-8 md:pt-0 pt-36">
                 <div className="grid flex-row-reverse grid-flow-dense grid-cols-2 gap-5 min-h-screen">
                     <div className="col-span-2 lg:col-span-1 flex justify-center items-center lg:py-10">
-                        <Carousel slide className='h-[250px] w-[250px] lg:h-[400px] lg:w-[400px] rounded-lg shadow-2xl'>
+                        <Carousel
+                            theme={customBannerCarouselTheme}
+                            slide
+                            className='h-[350px] w-[350px] lg:h-[400px] lg:w-[400px] rounded-lg shadow-2xl'>
                             <img src="assets/images/banner/banner_5.png" />
                             <img src="assets/images/banner/banner_1.jpg" />
                             <img src="assets/images/banner/banner_2.jpg" />
@@ -40,80 +52,58 @@ export default function Menu() {
 
                 <img className='w-full bg-[#A00000]' src="assets/images/bg.png" alt="" />
 
-                <div className='z-10 max-w-6xl mx-auto px-6 lg:px-8'>
-                    <div className="flex flex-col gap-10 w-full">
-                        <div className='flex gap-5 flex-col w-full'>
-                            <p className='text-4xl text-start' style={{ fontFamily: 'gagalin' }}>CRISPY CHICKEN</p>
-                            <div className="grid flex-row-reverse grid-flow-dense lg:grid-cols-3 grid-cols-1 gap-5">
-                                <div className="flex flex-col items-center">
-                                    <div className='col-span-1 lg:col-span-1 h-80 w-full rounded-lg shadow-2xl bg-white '>
-                                        <div className="flex flex-col justify-center items-center h-full relative">
-                                            <img className='h-32' src="assets/images/produk/dada.png" alt="" />
-                                            <p className='mt-6 text-xl' style={{ fontFamily: 'gagalin' }}>Dada</p>
-                                            <p className='text-3xl' style={{ fontFamily: 'gagalin', color: '#FAA41A', textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>Rp 11.000</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex flex-col items-center">
-                                    <div className='col-span-1 lg:col-span-1 h-80 w-full rounded-lg shadow-2xl bg-white'>
-                                        <div className="flex flex-col justify-center items-center h-full relative">
-                                            <img className='h-32' src="assets/images/produk/drum.png" alt="" />
-                                            <p className='mt-6 text-xl' style={{ fontFamily: 'gagalin' }}>Drum</p>
-                                            <p className='text-3xl' style={{ fontFamily: 'gagalin', color: '#FAA41A', textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>Rp 11.000</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex flex-col items-center">
-                                    <div className='col-span-1 lg:col-span-1 h-80 w-full rounded-lg shadow-2xl bg-white'>
-                                        <div className="flex flex-col justify-center items-center h-full relative">
-                                            <img className='h-32' src="assets/images/produk/wing.png" alt="" />
-                                            <p className='mt-6 text-xl' style={{ fontFamily: 'gagalin' }}>Sayap</p>
-                                            <p className='text-3xl' style={{ fontFamily: 'gagalin', color: '#FAA41A', textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>Rp 11.000</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                {listProduct.map((list, index) => {
+                    return (
+                        <div className='z-10 max-w-6xl mx-auto px-6 lg:px-8 mb-10'>
+                            <p className='text-4xl text-start mb-5' style={{ fontFamily: 'gagalin' }}>{list.type}</p>
+                            <Swiper
+                                modules={[Navigation, Pagination, Autoplay]}
+                                navigation={true}
+                                pagination={true}
+                                grabCursor={true}
+                                spaceBetween={10}
+                                className="mySwiper"
+                                autoplay={{
+                                    delay: 2500,
+                                    disableOnInteraction: false,
+                                }}
+                                loop={true}
+                                slidesPerView={4}
+                                breakpoints={{
+                                    0: {
+                                        slidesPerView: 1,
+                                    },
+                                    400: {
+                                        slidesPerView: 2,
+                                    },
+                                    639: {
+                                        slidesPerView: 3,
+                                    },
+                                    865: {
+                                        slidesPerView: 4
+                                    },
+                                    1000: {
+                                        slidesPerView: 4
+                                    },
+                                }}
+                            >
+
+                                {list.list.map((product, index) => {
+                                    return (
+                                        <SwiperSlide>
+                                            <div className='bg-white flex flex-col justify-center items-center rounded-lg h-72'>
+                                                <img className='h-24' src={`assets/images/produk/${product.image}`} alt="" />
+                                                <p className='mt-6 text-xl' style={{ fontFamily: 'gagalin' }}>{product.name}</p>
+                                                <p className='text-3xl' style={{ fontFamily: 'gagalin', color: '#FAA41A', textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>{formatRupiah(product.price, 'Rp. ')}</p>
+                                            </div>
+                                        </SwiperSlide>
+                                    )
+                                })}
+                            </Swiper>
+
                         </div>
-
-                        <div className='flex gap-5 flex-col w-full'>
-                            <p className='text-4xl text-start' style={{ fontFamily: 'gagalin' }}>+ Saus pilihan</p>
-                            <div className="grid flex-row-reverse grid-flow-dense lg:grid-cols-3 grid-cols-1 gap-5">
-                                <div className="flex flex-col items-center">
-                                    <div className='col-span-1 lg:col-span-1 h-80 w-full rounded-lg shadow-2xl bg-white '>
-                                        <div className="flex flex-col justify-center items-center h-full relative">
-                                            <img className='h-32' src="assets/images/produk/dada.png" alt="" />
-                                            <p className='mt-6 text-xl' style={{ fontFamily: 'gagalin' }}>Dada</p>
-                                            <p className='text-3xl' style={{ fontFamily: 'gagalin', color: '#FAA41A', textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>Rp 11.000</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex flex-col items-center">
-                                    <div className='col-span-1 lg:col-span-1 h-80 w-full rounded-lg shadow-2xl bg-white'>
-                                        <div className="flex flex-col justify-center items-center h-full relative">
-                                            <img className='h-32' src="assets/images/produk/drum.png" alt="" />
-                                            <p className='mt-6 text-xl' style={{ fontFamily: 'gagalin' }}>Drum</p>
-                                            <p className='text-3xl' style={{ fontFamily: 'gagalin', color: '#FAA41A', textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>Rp 11.000</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex flex-col items-center">
-                                    <div className='col-span-1 lg:col-span-1 h-80 w-full rounded-lg shadow-2xl bg-white'>
-                                        <div className="flex flex-col justify-center items-center h-full relative">
-                                            <img className='h-32' src="assets/images/produk/wing.png" alt="" />
-                                            <p className='mt-6 text-xl' style={{ fontFamily: 'gagalin' }}>Sayap</p>
-                                            <p className='text-3xl' style={{ fontFamily: 'gagalin', color: '#FAA41A', textShadow: '3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' }}>Rp 11.000</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-
-                </div>
-
+                    )
+                })}
                 <img className='w-full' src="assets/images/bg-2.png" alt="" />
             </div>
 

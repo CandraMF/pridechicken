@@ -23,23 +23,31 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('home');
 
 Route::get('/profil', function () {
     return Inertia::render('Profile');
-});
+})->name('profil');
 
 Route::get('/kemitraan', function () {
     return Inertia::render('Kemitraan');
-});
+})->name('kemitraan');
 
 Route::get('/kontak', function () {
     return Inertia::render('Kontak');
-});
+})->name('kontak');
 
 Route::get('/menu', function () {
     return Inertia::render('Menu');
-});
+})->name('menu');
+
+Route::get('/registrasi-mitra', function () {
+    return Inertia::render('RegistrasiMitra');
+})->name('registrasi');
+
+Route::get('/loker', function () {
+    return Inertia::render('Loker');
+})->name('loker');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
